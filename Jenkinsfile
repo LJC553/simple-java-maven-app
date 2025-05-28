@@ -1,14 +1,12 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine' 
-            args '-v /root/.m2:/root/.m2' 
-        }
+    agent any
+    tools {
+        maven 'Maven_3.8.5' // Jenkins中配置的工具
     }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                bat 'mvn clean package -DskipTests'
             }
         }
     }
